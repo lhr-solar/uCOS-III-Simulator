@@ -1,23 +1,16 @@
 /*
 *********************************************************************************************************
-*                                                uC/CPU
+*                                               uC/CPU
 *                                    CPU CONFIGURATION & PORT LAYER
 *
-*                          (c) Copyright 2004-2015; Micrium, Inc.; Weston, FL
+*                    Copyright 2004-2020 Silicon Laboratories Inc. www.silabs.com
 *
-*               All rights reserved.  Protected by international copyright laws.
+*                                 SPDX-License-Identifier: APACHE-2.0
 *
-*               uC/CPU is provided in source form to registered licensees ONLY.  It is
-*               illegal to distribute this source code to any third party unless you receive
-*               written permission by an authorized Micrium representative.  Knowledge of
-*               the source code may NOT be used to develop a similar product.
+*               This software is subject to an open source license and is distributed by
+*                Silicon Laboratories Inc. pursuant to the terms of the Apache License,
+*                    Version 2.0 available at www.apache.org/licenses/LICENSE-2.0.
 *
-*               Please help us continue to provide the Embedded community with the finest
-*               software available.  Your honesty is greatly appreciated.
-*
-*               You can find our product's user manual, API reference, release notes and
-*               more information at https://doc.micrium.com.
-*               You can contact us at www.micrium.com.
 *********************************************************************************************************
 */
 
@@ -28,16 +21,12 @@
 *
 *                                                POSIX
 *
-* Filename      : cpu_c.c
-* Version       : V1.30.02.00
-* Programmer(s) : EH
-*                 EJ
-*                 JBL
-*
+* Filename : cpu_c.c
+* Version  : v1.32.00
 *********************************************************************************************************
-* Notes         : (1) Requires a Single UNIX Specification, Version 3 compliant operating environment.
-*                     On Linux _XOPEN_SOURCE must be defined to at least 600, generally by passing the
-*                     -D_XOPEN_SOURCE=600 command line option to GCC.
+* Notes    : (1) Requires a Single UNIX Specification, Version 3 compliant operating environment.
+*                On Linux _XOPEN_SOURCE must be defined to at least 600, generally by passing the
+*                -D_XOPEN_SOURCE=600 command line option to GCC.
 *********************************************************************************************************
 */
 
@@ -239,8 +228,6 @@ void  CPU_IntEn (void)
 *
 * Return(s)   : none.
 *
-* Caller(s)   : none.
-*
 * Note(s)     : (1) This function MUST be called at the end of an ISR.
 *
 *********************************************************************************************************
@@ -276,8 +263,6 @@ void  CPU_ISR_End (void)
 * Argument(s) : p_tmr_interrupt     Pointer to a timer interrupt descriptor.
 *
 * Return(s)   : none.
-*
-* Caller(s)   : none.
 *
 * Note(s)     : none.
 *
@@ -324,8 +309,6 @@ void  CPU_TmrInterruptCreate (CPU_TMR_INTERRUPT  *p_tmr_interrupt)
 *
 * Return(s)   : none.
 *
-* Caller(s)   : none.
-*
 * Note(s)     : none.
 *
 *********************************************************************************************************
@@ -370,11 +353,6 @@ static  int  CPU_Printf (char  *p_str, ...)
 * Return(s)   : Number of contiguous, most-significant, leading zero bits in 'val', if NO error(s).
 *
 *               0,                                                                  otherwise.
-*
-* Caller(s)   : Application.
-*
-*               This function is an INTERNAL CPU module function but MAY be called by application
-*               function(s).
 *
 * Note(s)     : (1) (a) Supports the following data value sizes :
 *
@@ -457,11 +435,6 @@ CPU_DATA  CPU_CntLeadZeros (CPU_DATA  val)
 * Argument(s) : val         Data value to count trailing zero bits.
 *
 * Return(s)   : Number of contiguous, least-significant, trailing zero bits in 'val'.
-*
-* Caller(s)   : Application.
-*
-*               This function is a CPU module application programming interface (API) function & MAY
-*               be called by application function(s).
 *
 * Note(s)     : (1) (a) Supports the following data value sizes :
 *
@@ -574,11 +547,6 @@ CPU_DATA  CPU_CntTrailZeros (CPU_DATA  val)
 *
 * Return(s)   : none.
 *
-* Caller(s)   : CPU_TS_Init().
-*
-*               This function is an INTERNAL CPU module function & MUST be implemented by application/
-*               BSP function(s) [see Note #1] but MUST NOT be called by application function(s).
-*
 * Note(s)     : (1) CPU_TS_TmrInit() is an application/BSP function that MUST be defined by the developer
 *                   if either of the following CPU features is enabled :
 *
@@ -641,15 +609,6 @@ void  CPU_TS_TmrInit (void)
 * Argument(s) : none.
 *
 * Return(s)   : Timestamp timer count (see Notes #2a & #2b).
-*
-* Caller(s)   : CPU_TS_Init(),
-*               CPU_TS_Get32(),
-*               CPU_TS_Get64(),
-*               CPU_IntDisMeasStart(),
-*               CPU_IntDisMeasStop().
-*
-*               This function is an INTERNAL CPU module function & MUST be implemented by application/
-*               BSP function(s) [see Note #1] but SHOULD NOT be called by application function(s).
 *
 * Note(s)     : (1) CPU_TS_TmrRd() is an application/BSP function that MUST be defined by the developer
 *                   if either of the following CPU features is enabled :
@@ -753,8 +712,6 @@ CPU_TS_TMR  CPU_TS_TmrRd (void)
 *
 * Return(s)   : none.
 *
-* Caller(s)   : none.
-*
 * Note(s)     : none.
 *
 *********************************************************************************************************
@@ -776,8 +733,6 @@ static  void  CPU_IRQ_Handler (int sig)
 * Argument(s) : p_interrupt     Interrupt to be queued.
 *
 * Return(s)   : none.
-*
-* Caller(s)   : none.
 *
 * Note(s)     : (1) The Interrupt signal must be blocked before calling this function.
 *********************************************************************************************************
@@ -811,8 +766,6 @@ void  CPU_InterruptTriggerInternal (CPU_INTERRUPT  *p_interrupt)
 * Argument(s) : p_interrupt     Pointer to the interrupt to be queued.
 *
 * Return(s)   : none.
-*
-* Caller(s)   : none.
 *
 * Note(s)     : (1) The signals for this thread are already blocked during this function call.
 *
@@ -859,8 +812,6 @@ static  void  CPU_InterruptQueue (CPU_INTERRUPT  *p_interrupt)
 *
 * Return(s)   : none.
 *
-* Caller(s)   : none.
-*
 * Note(s)     : none.
 *
 *********************************************************************************************************
@@ -899,8 +850,6 @@ static  void  CPU_ISR_Sched (void)
 * Argument(s) : p_arg    Pointer to a timer interrupt descriptor.
 *
 * Return(s)   : none.
-*
-* Caller(s)   : none.
 *
 * Note(s)     : none.
 *
