@@ -39,7 +39,10 @@
 
 
 #define   OS_CPU_GLOBALS
+
+#ifndef  _GNU_SOURCE
 #define  _GNU_SOURCE
+#endif
 
 #ifdef VSC_INCLUDE_SOURCE_FILE_NAMES
 const  CPU_CHAR  *os_cpu_c__c = "$Id: $";

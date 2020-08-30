@@ -1210,7 +1210,7 @@ void  OS_TmrTask (void  *p_arg)
                     p_tmr->State = OS_TMR_STATE_COMPLETED;      /* Indicate that the timer has completed                */
                 }
                 p_fnct = p_tmr->CallbackPtr;                    /* Execute callback function if available               */
-                if (p_fnct != 0u) {
+                if ((CPU_INT64U)p_fnct != 0u) {
                     (*p_fnct)((void *)p_tmr,
                               p_tmr->CallbackPtrArg);
                 }
